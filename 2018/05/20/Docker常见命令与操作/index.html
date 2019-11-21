@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Docker,Linux," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Docker 命令入门拉取镜像docker pull &amp;lt;镜像名:tag&amp;gt; 例如 docker pull progrium/consul:latest 列出存在的镜像docker images 结果显示举例 1234REPOSITORY                   TAG                 IMAGE ID            CREATED">
+<meta name="keywords" content="Docker,Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker常见命令与操作">
+<meta property="og:url" content="http://blog.nicesite.win/2018/05/20/Docker常见命令与操作/index.html">
+<meta property="og:site_name" content="NiceSite">
+<meta property="og:description" content="Docker 命令入门拉取镜像docker pull &amp;lt;镜像名:tag&amp;gt; 例如 docker pull progrium/consul:latest 列出存在的镜像docker images 结果显示举例 1234REPOSITORY                   TAG                 IMAGE ID            CREATED">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-05-20T05:16:32.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Docker常见命令与操作">
+<meta name="twitter:description" content="Docker 命令入门拉取镜像docker pull &amp;lt;镜像名:tag&amp;gt; 例如 docker pull progrium/consul:latest 列出存在的镜像docker images 结果显示举例 1234REPOSITORY                   TAG                 IMAGE ID            CREATED">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.nicesite.win/2018/05/20/Docker常见命令与操作/"/>
+
+
+
+
+
+  <title>Docker常见命令与操作 | NiceSite</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">NiceSite</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">积累点滴，汪洋可期</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.nicesite.win/2018/05/20/Docker常见命令与操作/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Housirvip">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="NiceSite">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Docker常见命令与操作</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-20T12:03:19+08:00">
+                2018-05-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/05/20/Docker常见命令与操作/" class="leancloud_visitors" data-flag-title="Docker常见命令与操作">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Docker-命令入门"><a href="#Docker-命令入门" class="headerlink" title="Docker 命令入门"></a>Docker 命令入门</h2><h3 id="拉取镜像"><a href="#拉取镜像" class="headerlink" title="拉取镜像"></a>拉取镜像</h3><p><code>docker pull &lt;镜像名:tag&gt;</code></p>
+<p>例如 <code>docker pull progrium/consul:latest</code></p>
+<h3 id="列出存在的镜像"><a href="#列出存在的镜像" class="headerlink" title="列出存在的镜像"></a>列出存在的镜像</h3><p><code>docker images</code> 结果显示举例</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">REPOSITORY                   TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">swaggerapi/swagger-editor    latest              aaa304fc1b89        2 months ago        35.9MB</span><br><span class="line">daocloud.io/library/ubuntu   16.04               14f60031763d        10 months ago       120MB</span><br><span class="line">progrium/consul              latest              09ea64205e55        2 years ago         69.4MB</span><br></pre></td></tr></table></figure>
+<h3 id="删除镜像"><a href="#删除镜像" class="headerlink" title="删除镜像"></a>删除镜像</h3><p><code>docker rmi &lt;镜像名&gt;</code></p>
+<p><code>docker rmi $(docker images | grep none | awk &#39;{print $3}&#39; | sort -r)</code> 删除所有镜像</p>
+<h3 id="创建容器"><a href="#创建容器" class="headerlink" title="创建容器"></a>创建容器</h3><p><code>docker run -t -i ubuntu:16.04 /bin/bash</code></p>
+<p><code>docker run -d -p 80:80 -v /data:/data --name ubuntu ubuntu:16.04 /bin/bash</code></p>
+<p><code>--name</code> 参数可以指定启动后的容器名字，如果不指定则docker会帮我们取一个名字</p>
+<p><code>-i -t</code> 立即进入到容器命令行操作，其中，<code>-t</code> 选项让Docker分配一个伪终端（pseudo-tty）并绑定到容器的标准输入上， <code>-i</code> 则让容器的标准输入保持打开。</p>
+<p>后台运行可以填写 <code>-d</code></p>
+<p><code>-p &lt;host_port:contain_port&gt;</code> 是端口暴露或者端口映射</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-p 11211:11211 这个即是默认情况下，绑定主机所有网卡（0.0.0.0）的11211端口到容器的11211端口上</span><br><span class="line">-p 127.0.0.1:11211:11211 只绑定localhost这个接口的11211端口</span><br><span class="line">-p 127.0.0.1::5000</span><br><span class="line">-p 127.0.0.1:80:8080</span><br></pre></td></tr></table></figure>
+<p><code>-v &lt;host_path:container_path&gt;</code> 是目录映射</p>
+<h3 id="操作容器"><a href="#操作容器" class="headerlink" title="操作容器"></a>操作容器</h3><h4 id="查看正在运行的容器"><a href="#查看正在运行的容器" class="headerlink" title="查看正在运行的容器"></a>查看正在运行的容器</h4><p><code>docker ps</code></p>
+<p><code>docker ps -a</code> 为查看所有的容器，包括已经停止的</p>
+<h4 id="启动关闭和重启"><a href="#启动关闭和重启" class="headerlink" title="启动关闭和重启"></a>启动关闭和重启</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker start &lt;container_id_or_name&gt;</span><br><span class="line">docker stop &lt;container_id_or_name&gt;</span><br><span class="line">docker restart &lt;container_id_or_name&gt;</span><br><span class="line">docker kill &lt;container_id_or_name&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="进入到正在运行的容器"><a href="#进入到正在运行的容器" class="headerlink" title="进入到正在运行的容器"></a>进入到正在运行的容器</h4><p><code>docker exec -it &lt;container_id_or_name&gt; /bin/bash</code></p>
+<p>操作完成后，直接 <code>ctrl + d</code> 或者直接输入 <code>exit</code> 退出即可</p>
+<h4 id="删除容器"><a href="#删除容器" class="headerlink" title="删除容器"></a>删除容器</h4><p><code>docker rm &lt;container_id_or_name&gt;</code></p>
+<h4 id="查看容器user密码"><a href="#查看容器user密码" class="headerlink" title="查看容器user密码"></a>查看容器user密码</h4><p><code>docker logs &lt;container_id_or_name&gt; 2&gt;&amp;1 | grep &#39;^User: &#39; | tail -n1</code></p>
+<p>因为docker容器启动时的root用户的密码是随机分配的。所以，通过这种方式就可以得到redmine容器的root用户的密码了</p>
+<h4 id="查看容器日志"><a href="#查看容器日志" class="headerlink" title="查看容器日志"></a>查看容器日志</h4><p><code>docker logs -f &lt;container_id_or_name&gt;</code></p>
+<h2 id="Docker-进阶操作"><a href="#Docker-进阶操作" class="headerlink" title="Docker 进阶操作"></a>Docker 进阶操作</h2><blockquote>
+<p>详见 Gitbook <a href="https://github.com/yeasy/docker_practice" target="_blank" rel="noopener">Docker从入门到实践</a></p>
+</blockquote>
+<h3 id="修改Docker本地镜像与容器的存储位置"><a href="#修改Docker本地镜像与容器的存储位置" class="headerlink" title="修改Docker本地镜像与容器的存储位置"></a>修改Docker本地镜像与容器的存储位置</h3><h4 id="方法一、软链接"><a href="#方法一、软链接" class="headerlink" title="方法一、软链接"></a>方法一、软链接</h4><p>默认情况下Docker的存放位置为：<code>/var/lib/docker</code> 可以通过下面命令查看具体位置：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker info | grep "Docker Root Dir"</span><br></pre></td></tr></table></figure>
+<p>解决这个问题，最直接的方法当然是挂载分区到这个目录，但是我的数据盘还有其他东西，这肯定不好管理，所以采用修改镜像和容器的存放路径的方式达到目的</p>
+<p>这个方法里将通过软连接来实现</p>
+<p>首先停掉Docker服务：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart docker</span><br><span class="line">或者</span><br><span class="line">service docker stop</span><br></pre></td></tr></table></figure>
+<p>然后移动整个<code>/var/lib/docker</code>目录到目的路径：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mv /var/lib/docker /root/data/docker</span><br><span class="line">ln -s /root/data/docker /var/lib/docker</span><br></pre></td></tr></table></figure>
+<p>这时候启动Docker时发现存储目录依旧是<code>/var/lib/docker</code>，但是实际上是存储在数据盘的，你可以在数据盘上看到容量变化</p>
+<h4 id="方法二、修改镜像和容器的存放路径"><a href="#方法二、修改镜像和容器的存放路径" class="headerlink" title="方法二、修改镜像和容器的存放路径"></a>方法二、修改镜像和容器的存放路径</h4><p>指定镜像和容器存放路径的参数是<code>--graph=/var/lib/docker</code>，我们只需要修改配置文件指定启动参数即可。</p>
+<p>Docker 的配置文件可以设置大部分的后台进程参数，在各个操作系统中的存放位置不一致，在 Ubuntu 中的位置是：<code>/etc/default/docker</code>，在 CentOS 中的位置是：<code>/etc/sysconfig/docker</code>。</p>
+<p>如果是 CentOS 则添加下面这行：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">OPTIONS=--graph="/root/data/docker" --selinux-enabled -H fd://</span><br></pre></td></tr></table></figure>
+<p>如果是 Ubuntu 则添加下面这行（因为 Ubuntu 默认没开启 selinux）：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">OPTIONS=--graph="/root/data/docker" -H fd://</span><br><span class="line"><span class="meta">#</span> 或者</span><br><span class="line">DOCKER_OPTS="-g /root/data/docker"</span><br></pre></td></tr></table></figure>
+<p>最后重新启动，Docker 的路径就改成 <code>/root/data/docker</code> 了</p>
+<h3 id="生成新的-image"><a href="#生成新的-image" class="headerlink" title="生成新的 image"></a>生成新的 image</h3><p><code>build</code>命令可以从<code>Dockerfile</code>和上下文来创建镜像：<br><code>docker build [OPTIONS] PATH | URL | -</code>上面的<code>PATH</code>或<code>URL</code>中的文件被称作上下文，build  image的过程会先把这些文件传送到docker的服务端来进行的<br>如果<code>PATH</code>直接就是一个单独的<code>Dockerfile</code>文件则可以不需要上下文；如果<code>URL</code>是一个Git仓库地址，那么创建image的过程中会自动<code>git  clone</code>一份到本机的临时目录，它就成为了本次build的上下文。无论指定的<code>PATH</code>是什么，<code>Dockerfile</code>是至关重要的，请参考 <a href="http://docs.docker.com/reference/builder/" target="_blank" rel="noopener">Dockerfile  Reference</a>。<br>请看下面的例子：</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># cat Dockerfile </span></span><br><span class="line"><span class="keyword">FROM</span> seanlook/nginx:bash_vim</span><br><span class="line"><span class="keyword">EXPOSE</span> <span class="number">80</span></span><br><span class="line"><span class="keyword">ENTRYPOINT</span> /usr/sbin/nginx -c /etc/nginx/nginx.conf &amp;&amp; /bin/bash</span><br><span class="line"></span><br><span class="line"># docker build -t seanlook/nginx:bash_vim_Df .</span><br><span class="line">Sending build context to Docker daemon 73.45 MB</span><br><span class="line">Sending build context to Docker daemon </span><br><span class="line">Step 0 : FROM seanlook/nginx:bash_vim</span><br><span class="line"> ---&gt; aa8516fa0bb7</span><br><span class="line">Step 1 : EXPOSE 80</span><br><span class="line"> ---&gt; Using cache</span><br><span class="line"> ---&gt; fece07e2b515</span><br><span class="line">Step 2 : ENTRYPOINT /usr/sbin/nginx -c /etc/nginx/nginx.conf &amp;&amp; /bin/bash</span><br><span class="line"> ---&gt; Running in e08963fd5afb</span><br><span class="line"> ---&gt; d9bbd13f5066</span><br><span class="line">Removing intermediate container e08963fd5afb</span><br><span class="line">Successfully built d9bbd13f5066</span><br></pre></td></tr></table></figure>
+<h3 id="给镜像打上标签"><a href="#给镜像打上标签" class="headerlink" title="给镜像打上标签"></a>给镜像打上标签</h3><p>tag 的作用主要有两点：一是为镜像起一个容易理解的名字，二是可以通过<code>docker tag</code>来重新指定镜像的仓库，这样在<code>push</code>时自动提交到仓库。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 将同一IMAGE_ID的所有tag，合并为一个新的</span><br><span class="line">docker tag 195eb90b5349 seanlook/ubuntu:rm_test</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 新建一个tag，保留旧的那条记录</span><br><span class="line">docker tag Registry/Repos:Tag New_Registry/New_Repos:New_Tag</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Docker/" rel="tag"># Docker</a>
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/20/MarkDown数学公式/" rel="next" title="MarkDown数学公式">
+                <i class="fa fa-chevron-left"></i> MarkDown数学公式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/20/Docker-Consul服务发现/" rel="prev" title="Docker+Consul服务发现">
+                Docker+Consul服务发现 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Housirvip</p>
+              <p class="site-description motion-element" itemprop="description">housirvip的个人博客</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-命令入门"><span class="nav-number">1.</span> <span class="nav-text">Docker 命令入门</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#拉取镜像"><span class="nav-number">1.1.</span> <span class="nav-text">拉取镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#列出存在的镜像"><span class="nav-number">1.2.</span> <span class="nav-text">列出存在的镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除镜像"><span class="nav-number">1.3.</span> <span class="nav-text">删除镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建容器"><span class="nav-number">1.4.</span> <span class="nav-text">创建容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作容器"><span class="nav-number">1.5.</span> <span class="nav-text">操作容器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查看正在运行的容器"><span class="nav-number">1.5.1.</span> <span class="nav-text">查看正在运行的容器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#启动关闭和重启"><span class="nav-number">1.5.2.</span> <span class="nav-text">启动关闭和重启</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#进入到正在运行的容器"><span class="nav-number">1.5.3.</span> <span class="nav-text">进入到正在运行的容器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除容器"><span class="nav-number">1.5.4.</span> <span class="nav-text">删除容器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看容器user密码"><span class="nav-number">1.5.5.</span> <span class="nav-text">查看容器user密码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看容器日志"><span class="nav-number">1.5.6.</span> <span class="nav-text">查看容器日志</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-进阶操作"><span class="nav-number">2.</span> <span class="nav-text">Docker 进阶操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修改Docker本地镜像与容器的存储位置"><span class="nav-number">2.1.</span> <span class="nav-text">修改Docker本地镜像与容器的存储位置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#方法一、软链接"><span class="nav-number">2.1.1.</span> <span class="nav-text">方法一、软链接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法二、修改镜像和容器的存放路径"><span class="nav-number">2.1.2.</span> <span class="nav-text">方法二、修改镜像和容器的存放路径</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成新的-image"><span class="nav-number">2.2.</span> <span class="nav-text">生成新的 image</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#给镜像打上标签"><span class="nav-number">2.3.</span> <span class="nav-text">给镜像打上标签</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Housirvip</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("lvTHcs8BIVaMq7QS5615Uicg-gzGzoHsz", "yoz9WzeAOxkV3XVO8FGEKWqb");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

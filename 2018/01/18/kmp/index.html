@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="算法,LeetCode,Golang," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="简介 KMP算法是一种改进的字符串匹配算法，由D.E.Knuth，J.H.Morris和V.R.Pratt同时发现，因此人们称它为克努特—莫里斯—普拉特操作（简称KMP算法）。  KMP算法的关键是利用匹配失败后的信息，尽量减少模式串与主串的匹配次数以达到快速匹配的目的。具体实现就是实现一个next()函数，函数本身包含了模式串的局部匹配信息。时间复杂度O(m+n)。 理论介绍设目标字符串targ">
+<meta name="keywords" content="算法,LeetCode,Golang">
+<meta property="og:type" content="article">
+<meta property="og:title" content="KMP算法个人理解">
+<meta property="og:url" content="http://blog.nicesite.win/2018/01/18/kmp/index.html">
+<meta property="og:site_name" content="NiceSite">
+<meta property="og:description" content="简介 KMP算法是一种改进的字符串匹配算法，由D.E.Knuth，J.H.Morris和V.R.Pratt同时发现，因此人们称它为克努特—莫里斯—普拉特操作（简称KMP算法）。  KMP算法的关键是利用匹配失败后的信息，尽量减少模式串与主串的匹配次数以达到快速匹配的目的。具体实现就是实现一个next()函数，函数本身包含了模式串的局部匹配信息。时间复杂度O(m+n)。 理论介绍设目标字符串targ">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://static.nicesite.vip/2018-06-12-085014.jpg">
+<meta property="og:image" content="http://static.nicesite.vip/2018-06-12-085035.jpg">
+<meta property="og:image" content="http://static.nicesite.vip/2018-06-12-085058.jpg">
+<meta property="og:image" content="http://static.nicesite.vip/2018-06-12-085117.jpg">
+<meta property="og:image" content="http://static.nicesite.vip/2018-06-12-085129.jpg">
+<meta property="og:updated_time" content="2018-06-12T08:51:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="KMP算法个人理解">
+<meta name="twitter:description" content="简介 KMP算法是一种改进的字符串匹配算法，由D.E.Knuth，J.H.Morris和V.R.Pratt同时发现，因此人们称它为克努特—莫里斯—普拉特操作（简称KMP算法）。  KMP算法的关键是利用匹配失败后的信息，尽量减少模式串与主串的匹配次数以达到快速匹配的目的。具体实现就是实现一个next()函数，函数本身包含了模式串的局部匹配信息。时间复杂度O(m+n)。 理论介绍设目标字符串targ">
+<meta name="twitter:image" content="http://static.nicesite.vip/2018-06-12-085014.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.nicesite.win/2018/01/18/kmp/"/>
+
+
+
+
+
+  <title>KMP算法个人理解 | NiceSite</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">NiceSite</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">积累点滴，汪洋可期</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.nicesite.win/2018/01/18/kmp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Housirvip">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="NiceSite">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">KMP算法个人理解</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-18T18:34:30+08:00">
+                2018-01-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/01/18/kmp/" class="leancloud_visitors" data-flag-title="KMP算法个人理解">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><blockquote>
+<p>KMP算法是一种改进的字符串匹配算法，由D.E.Knuth，J.H.Morris和V.R.Pratt同时发现，因此人们称它为克努特—莫里斯—普拉特操作（简称KMP算法）。</p>
+</blockquote>
+<p>KMP算法的关键是利用匹配失败后的信息，尽量减少模式串与主串的匹配次数以达到快速匹配的目的。具体实现就是实现一个next()函数，函数本身包含了模式串的局部匹配信息。时间复杂度O(m+n)。</p>
+<h2 id="理论介绍"><a href="#理论介绍" class="headerlink" title="理论介绍"></a>理论介绍</h2><p>设目标字符串target为：<br><code>a b a c a a b a c a b a c a b a a b b</code></p>
+<p>模式字符串model为：<code>a b a c a b</code></p>
+<h3 id="计算next数组"><a href="#计算next数组" class="headerlink" title="计算next数组"></a>计算next数组</h3><p>对此model串的next数组计算为<code>[0 0 1 0 1 2]</code><br>计算规则为：截止到此index，首尾重复的子串最大长度。</p>
+<ul>
+<li>a 规定为0</li>
+<li>ab 首尾子串a和b，重复长度为0</li>
+<li>aba 首部子串a，ab，尾部子串a，ba，重复1</li>
+<li>abac 首部子串a，ab，aba，尾部子串c，ac，bac，长度为0</li>
+<li>abaca 首部子串a，ab，aba，abac，尾部子串a，ca，aca，baca，长度为1</li>
+<li>abacab 首部子串a，ab，aba，abac，abaca，尾部子串b，ab，cab，acab，bacab，长度为2</li>
+</ul>
+<p>next数组就是这样子去算，不过从上述过程可以发现，next数组，上次的数值和下次的数值是有所关系的，有三种情况会发生：1.归零；2.归一；3.加一；</p>
+<blockquote>
+<p>归零是加上一位字符后，没有重复首尾没有重复了，甚至首位和尾位单字符都不相同了，就归零。<br>归一是加上加上一位字符后，只剩下首位和尾位单字符相同。<br>加一是加上一位字符后，碰巧和首部那串字符相同顺序，多一个字符，就是多的那一个子串的长度。</p>
+</blockquote>
+<p>举个例子对于字符串abcabcad<br>next[0]=0<br>next[1]=0<br>next[2]=0<br>next[3]=0+1<br>next[4]=1+1<br>next[5]=2+1<br>next[6]=1<br>next[7]=0</p>
+<h3 id="第一次匹配"><a href="#第一次匹配" class="headerlink" title="第一次匹配"></a>第一次匹配</h3><p><img src="http://static.nicesite.vip/2018-06-12-085014.jpg" alt=""></p>
+<p>我们可以看出在model的index=5的字符（规定第一个为index=0）出现不匹配</p>
+<p>那么我们需要把model后移，再次进行匹配<br>（移动是相对的，说把target前移或者model后移都可以的咯）</p>
+<p><strong>此时就出现了问题，后移多少位？</strong></p>
+<ul>
+<li><p>传统算法认为后移一位，继续匹配是最稳健安全的，但是这样太过浪费时间，设target长度为n，model的长度为m，那么复杂度为O(n<em>m)<br>(其实能优化成(n-m)</em>m)</p>
+</li>
+<li><p>KMP算法则使model尽可能多的后移，我们看到，前面已经匹配了5个字符了，而next[4]=1，说明index=4的地方和index=0的地方是相等的。那么target与model在index=4的地方能匹配，就等同于在index=0的地方也能配对。我们此时移动了4位，这个4即5-1，已配对的长度-next[index-1]</p>
+</li>
+</ul>
+<h3 id="第二次匹配"><a href="#第二次匹配" class="headerlink" title="第二次匹配"></a>第二次匹配</h3><p><img src="http://static.nicesite.vip/2018-06-12-085035.jpg" alt=""></p>
+<p>index=1时不匹配，移动index-next[index-1]即1-0=1</p>
+<h3 id="第三次匹配"><a href="#第三次匹配" class="headerlink" title="第三次匹配"></a>第三次匹配</h3><p><img src="http://static.nicesite.vip/2018-06-12-085058.jpg" alt=""></p>
+<p>很完美，匹配成功了</p>
+<h3 id="再换个例子解释下移动"><a href="#再换个例子解释下移动" class="headerlink" title="再换个例子解释下移动"></a>再换个例子解释下移动</h3><h4 id="例2"><a href="#例2" class="headerlink" title="例2"></a>例2</h4><p><img src="http://static.nicesite.vip/2018-06-12-085117.jpg" alt=""></p>
+<p><img src="http://static.nicesite.vip/2018-06-12-085129.jpg" alt=""></p>
+<p>前面匹配了6个字符ABCDAB，而最后的D未匹配，D前面的字符next[6-1]=2，6-2=4，所以model串向后移动了4个位置</p>
+<h3 id="换个角度来看待移动"><a href="#换个角度来看待移动" class="headerlink" title="换个角度来看待移动"></a>换个角度来看待移动</h3><p>我们看例2：<br>对于target串的指针位置，规定为i，model串的指针位置规定为j。<br>如果使得i从0到len(target)-1，每次i++，而且只增加不减少，只对j进行各种回退，即可实现复杂度为O(n)<br>此时i=10，j=6，不匹配。<br>之后i不变，j=next[j-1]=2，继续匹配，i++，j++<br>这样就相当于model串后移了6-2=4位。</p>
+<h2 id="算法代码"><a href="#算法代码" class="headerlink" title="算法代码"></a>算法代码</h2><p>代码使用golang书写</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//时间复杂度为o(n)其中n为str长度</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">getNext</span><span class="params">(model <span class="keyword">string</span>)</span> []<span class="title">int</span></span> &#123;</span><br><span class="line">	<span class="built_in">len</span> := <span class="built_in">len</span>(model)</span><br><span class="line">	<span class="comment">// 声明动态长度为len的一个next数组</span></span><br><span class="line">	next := <span class="built_in">make</span>([]<span class="keyword">int</span>, <span class="built_in">len</span>)</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">1</span>; i &lt; <span class="built_in">len</span>; i++ &#123;</span><br><span class="line">		<span class="comment">// 无非归零，归一，加一三种情况</span></span><br><span class="line">		<span class="keyword">if</span> next[i<span class="number">-1</span>] &gt; <span class="number">0</span> &amp;&amp; model[next[i<span class="number">-1</span>]] == model[i] &#123;</span><br><span class="line">			next[i] = next[i<span class="number">-1</span>] + <span class="number">1</span></span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> model[<span class="number">0</span>] == model[i] &#123;</span><br><span class="line">			next[i] = <span class="number">1</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 不修改表示next[i]=0</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> next</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//时间复杂度为o(m)其中m为str长度</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">KMP</span><span class="params">(model, target <span class="keyword">string</span>)</span> <span class="title">bool</span></span> &#123;</span><br><span class="line">	next := getNext(model)</span><br><span class="line">	same := <span class="number">0</span></span><br><span class="line">	<span class="comment">// 保证i始终不退回，j尽量少退回</span></span><br><span class="line">	<span class="keyword">for</span> i, j := <span class="number">0</span>, <span class="number">0</span>; i &lt; <span class="built_in">len</span>(target); i++ &#123;</span><br><span class="line">		<span class="keyword">if</span> model[j] == target[i] &#123;</span><br><span class="line">			same++</span><br><span class="line">			j++</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> j &gt; <span class="number">0</span> &#123;</span><br><span class="line">			<span class="comment">// 前面一位的next值表示各种回退后此时匹配的字符数</span></span><br><span class="line">			same = next[j<span class="number">-1</span>]</span><br><span class="line">			<span class="comment">// j就回退到same的值，前j位都匹配完成了，只需要往后匹配</span></span><br><span class="line">			j = same</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> same == <span class="built_in">len</span>(model) &#123;</span><br><span class="line">			<span class="comment">// 此时刚好匹配完成，开始位置为i-length+1，结束位置为i</span></span><br><span class="line">			<span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/算法/" rel="tag"># 算法</a>
+          
+            <a href="/tags/LeetCode/" rel="tag"># LeetCode</a>
+          
+            <a href="/tags/Golang/" rel="tag"># Golang</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/02/git和svn区别/" rel="next" title="Git 和 SVN 基本区别">
+                <i class="fa fa-chevron-left"></i> Git 和 SVN 基本区别
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/26/manacher/" rel="prev" title="manacher算法">
+                manacher算法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Housirvip</p>
+              <p class="site-description motion-element" itemprop="description">housirvip的个人博客</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#理论介绍"><span class="nav-number">2.</span> <span class="nav-text">理论介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#计算next数组"><span class="nav-number">2.1.</span> <span class="nav-text">计算next数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第一次匹配"><span class="nav-number">2.2.</span> <span class="nav-text">第一次匹配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二次匹配"><span class="nav-number">2.3.</span> <span class="nav-text">第二次匹配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三次匹配"><span class="nav-number">2.4.</span> <span class="nav-text">第三次匹配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#再换个例子解释下移动"><span class="nav-number">2.5.</span> <span class="nav-text">再换个例子解释下移动</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#例2"><span class="nav-number">2.5.1.</span> <span class="nav-text">例2</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#换个角度来看待移动"><span class="nav-number">2.6.</span> <span class="nav-text">换个角度来看待移动</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法代码"><span class="nav-number">3.</span> <span class="nav-text">算法代码</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Housirvip</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("lvTHcs8BIVaMq7QS5615Uicg-gzGzoHsz", "yoz9WzeAOxkV3XVO8FGEKWqb");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

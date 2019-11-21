@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="MarkDown,Math," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="在输入数学公式的时候，需要在数学公式的前后加入$$符号，将需要输入的公式加入到$$中间。  上下标 上标 ^ 下标 _     名称 数学表达式 MarkDown公式     上标 $x^y$ $x^y$   下标 $x_y$ $x_y$    分数 \frac{分子}{分母}     名称 数学表达式 MarkDown公式     分数 $\frac{1+2x}{3y+4}$ $\frac{1">
+<meta name="keywords" content="MarkDown,Math">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MarkDown数学公式">
+<meta property="og:url" content="http://blog.nicesite.win/2018/05/20/MarkDown数学公式/index.html">
+<meta property="og:site_name" content="NiceSite">
+<meta property="og:description" content="在输入数学公式的时候，需要在数学公式的前后加入$$符号，将需要输入的公式加入到$$中间。  上下标 上标 ^ 下标 _     名称 数学表达式 MarkDown公式     上标 $x^y$ $x^y$   下标 $x_y$ $x_y$    分数 \frac{分子}{分母}     名称 数学表达式 MarkDown公式     分数 $\frac{1+2x}{3y+4}$ $\frac{1">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-05-20T06:38:55.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MarkDown数学公式">
+<meta name="twitter:description" content="在输入数学公式的时候，需要在数学公式的前后加入$$符号，将需要输入的公式加入到$$中间。  上下标 上标 ^ 下标 _     名称 数学表达式 MarkDown公式     上标 $x^y$ $x^y$   下标 $x_y$ $x_y$    分数 \frac{分子}{分母}     名称 数学表达式 MarkDown公式     分数 $\frac{1+2x}{3y+4}$ $\frac{1">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.nicesite.win/2018/05/20/MarkDown数学公式/"/>
+
+
+
+
+
+  <title>MarkDown数学公式 | NiceSite</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">NiceSite</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">积累点滴，汪洋可期</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.nicesite.win/2018/05/20/MarkDown数学公式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Housirvip">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="NiceSite">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MarkDown数学公式</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-20T00:19:33+08:00">
+                2018-05-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/05/20/MarkDown数学公式/" class="leancloud_visitors" data-flag-title="MarkDown数学公式">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>在输入数学公式的时候，需要在数学公式的前后加入<code>$$</code>符号，将需要输入的公式加入到<code>$$</code>中间。</p>
+</blockquote>
+<h2 id="上下标"><a href="#上下标" class="headerlink" title="上下标"></a>上下标</h2><ul>
+<li>上标 ^</li>
+<li>下标 _</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>数学表达式</th>
+<th>MarkDown公式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>上标</td>
+<td>$x^y$</td>
+<td><code>$x^y$</code></td>
+</tr>
+<tr>
+<td>下标</td>
+<td>$x_y$</td>
+<td><code>$x_y$</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="分数"><a href="#分数" class="headerlink" title="分数"></a>分数</h2><ul>
+<li><code>\frac{分子}{分母}</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>数学表达式</th>
+<th>MarkDown公式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>分数</td>
+<td>$\frac{1+2x}{3y+4}$</td>
+<td><code>$\frac{1+2x}{3y+4}$</code></td>
+</tr>
+<tr>
+<td>偏微分</td>
+<td>$\frac{\partial f}{\partial x} = 2\,\sqrt{a}\,x$</td>
+<td><code>$\frac{\partial f}{\partial x} = 2\,\sqrt{a}\,x$</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="累加"><a href="#累加" class="headerlink" title="累加"></a>累加</h2><ul>
+<li><code>\sum_{下标}^{上标}{表达式}</code></li>
+<li><code>\sum^{上标}_{下标}{表达式}</code></li>
+<li>累加号的上标下标的前后顺序可以互换。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>数学表达式</th>
+<th>MarkDown公式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>求和</td>
+<td>$\sum{3x^n}$</td>
+<td><code>$\sum{3x^n}$</code></td>
+</tr>
+<tr>
+<td>范围求和1</td>
+<td>$\sum_{n=1}^N{3x^n}$</td>
+<td><code>$\sum_{n=1}^N{3x^n}$</code></td>
+</tr>
+<tr>
+<td>范围求和2</td>
+<td>$\sum_{n=1}^{2N+1}{3x^n}$</td>
+<td><code>$\sum_{n=1}^{2N+1}{3x^n}$</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="累乘"><a href="#累乘" class="headerlink" title="累乘"></a>累乘</h2><ul>
+<li><code>\prod_{下标}^{上标}{表达式}</code></li>
+<li><code>\prod^{上标}_{下标}{表达式}</code></li>
+<li>累加号的上标下标的前后顺序可以互换。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>数学表达式</th>
+<th>MarkDown公式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>累乘</td>
+<td>$\prod{3x^n}$</td>
+<td><code>$\prod{3x^n}$</code></td>
+</tr>
+<tr>
+<td>范围累乘1</td>
+<td>$\prod_{n=1}^N{3x^n}$</td>
+<td><code>$\prod_{n=1}^N{3x^n}$</code></td>
+</tr>
+<tr>
+<td>范围累乘2</td>
+<td>$\prod_{n=1}^{2N+1}{3x^n}$</td>
+<td><code>$\prod_{n=1}^{2N+1}{3x^n}$</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="开方"><a href="#开方" class="headerlink" title="开方"></a>开方</h2><ul>
+<li><code>\sqrt[次方]{数值}</code></li>
+<li><code>[]</code>中写的是开几次方，<code>{}</code>中写的是需要开方的数值。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>数学表达式</th>
+<th>MarkDown公式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>开方号1</td>
+<td>$\sqrt[y]{x}$</td>
+<td><code>$\sqrt[y]{x}$</code></td>
+</tr>
+<tr>
+<td>开方号2</td>
+<td>$\sqrt[x]{y}$</td>
+<td><code>$\sqrt[x]{y}$</code></td>
+</tr>
+<tr>
+<td>开方号3</td>
+<td>$\sqrt[2]{a^2}$</td>
+<td><code>$\sqrt{a^2}</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="积分"><a href="#积分" class="headerlink" title="积分"></a>积分</h2><ul>
+<li><code>\int_{下标}^{上标}{表达式}</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>数学表达式</th>
+<th>MarkDown公式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>积分</td>
+<td>$\int_a^b{f(x)}{\rm d}x$</td>
+<td><code>$\int_a^b{f(x)}{\rm d}x$</code></td>
+</tr>
+<tr>
+<td>二重积分</td>
+<td>$\iint_a^b{f(x)}{\rm d}x$</td>
+<td><code>$\iint_a^b{f(x)}{\rm d}x$</code></td>
+</tr>
+<tr>
+<td>三重积分</td>
+<td>$\iiint_a^b{f(x)}{\rm d}x$</td>
+<td><code>$\iiint_a^b{f(x)}{\rm d}x$</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="正无穷、负无穷"><a href="#正无穷、负无穷" class="headerlink" title="正无穷、负无穷"></a>正无穷、负无穷</h2><ul>
+<li><code>\infty</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>数学表达式</th>
+<th>MarkDown公式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>正无穷</td>
+<td>$+\infty$</td>
+<td><code>$+\infty$</code></td>
+</tr>
+<tr>
+<td>负无穷</td>
+<td>$-\infty$</td>
+<td><code>$-\infty$</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="极限"><a href="#极限" class="headerlink" title="极限"></a>极限</h2><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>数学表达式</th>
+<th>MarkDown公式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>左箭头</td>
+<td>$\lim_{n\rightarrow+\infty} n$</td>
+<td><code>$\lim_{n\rightarrow+\infty} n$</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="关系运算符"><a href="#关系运算符" class="headerlink" title="关系运算符"></a>关系运算符</h2><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>数学表达式</th>
+<th>MarkDown公式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>大于等于</td>
+<td>$\geq$</td>
+<td><code>$\geq$</code></td>
+</tr>
+<tr>
+<td>小于等于</td>
+<td>$\leq$</td>
+<td><code>$\leq$</code></td>
+</tr>
+<tr>
+<td>包含于</td>
+<td>$\subset$</td>
+<td><code>$\subset$</code></td>
+</tr>
+<tr>
+<td>包含</td>
+<td>$\supset$</td>
+<td><code>$\supset$</code></td>
+</tr>
+<tr>
+<td>属于</td>
+<td>$\in$</td>
+<td><code>$\in$</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="二元运算符"><a href="#二元运算符" class="headerlink" title="二元运算符"></a>二元运算符</h2><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>数学表达式</th>
+<th>MarkDown公式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>加减</td>
+<td>$\pm$</td>
+<td><code>$\pm$</code></td>
+</tr>
+<tr>
+<td>点乘</td>
+<td>$\cdot$</td>
+<td><code>$\cdot$</code></td>
+</tr>
+<tr>
+<td>乘</td>
+<td>$\times$</td>
+<td><code>$\times$</code></td>
+</tr>
+<tr>
+<td>除</td>
+<td>$\div$</td>
+<td><code>$\div$</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="否定关系运算符"><a href="#否定关系运算符" class="headerlink" title="否定关系运算符"></a>否定关系运算符</h2><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>数学表达式</th>
+<th>MarkDown公式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>不等于</td>
+<td>$\not=$</td>
+<td><code>$\not=$</code></td>
+</tr>
+<tr>
+<td>不小于</td>
+<td>$\not&lt;$</td>
+<td><code>$\not&lt;$</code></td>
+</tr>
+<tr>
+<td>不包含</td>
+<td>$\not\supset$</td>
+<td><code>$\not\supset$</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="对数运算符"><a href="#对数运算符" class="headerlink" title="对数运算符"></a>对数运算符</h2><ul>
+<li><code>$\log_{底数}{数值}$</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>数学表达式</th>
+<th>MarkDown公式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>对数1</td>
+<td>$\log_2{8}$</td>
+<td><code>$\log_2{8}$</code></td>
+</tr>
+<tr>
+<td>对数2</td>
+<td>$\ln{8}$</td>
+<td><code>$\ln{8}$</code></td>
+</tr>
+<tr>
+<td>对数3</td>
+<td>$\lg{8}$</td>
+<td><code>$\lg{8}$</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="三角运算符"><a href="#三角运算符" class="headerlink" title="三角运算符"></a>三角运算符</h2><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>数学表达式</th>
+<th>MarkDown公式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>垂直</td>
+<td>$\bot$</td>
+<td><code>$\bot$</code></td>
+</tr>
+<tr>
+<td>角</td>
+<td>$\angle$</td>
+<td><code>$\angle$</code></td>
+</tr>
+<tr>
+<td>角度</td>
+<td>$30^\circ$</td>
+<td><code>$30^\circ$</code></td>
+</tr>
+<tr>
+<td>正弦</td>
+<td>$\sin$</td>
+<td><code>$\sin$</code></td>
+</tr>
+<tr>
+<td>余弦</td>
+<td>$\cos$</td>
+<td><code>$\cos$</code></td>
+</tr>
+<tr>
+<td>正切</td>
+<td>$\tan$</td>
+<td><code>$\tan$</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="箭头"><a href="#箭头" class="headerlink" title="箭头"></a>箭头</h2><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>数学表达式</th>
+<th>MarkDown公式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>左箭头</td>
+<td>$\leftarrow$</td>
+<td><code>$\leftarrow$</code></td>
+</tr>
+<tr>
+<td>右箭头</td>
+<td>$\rightarrow$</td>
+<td><code>$\rightarrow$</code></td>
+</tr>
+<tr>
+<td>长箭头</td>
+<td>$\longrightarrow$</td>
+<td><code>$\longrightarrow$</code></td>
+</tr>
+<tr>
+<td>上箭头</td>
+<td>$\uparrow$</td>
+<td><code>$\uparrow$</code></td>
+</tr>
+<tr>
+<td>下箭头</td>
+<td>$\downarrow$</td>
+<td><code>$\downarrow$</code></td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MarkDown/" rel="tag"># MarkDown</a>
+          
+            <a href="/tags/Math/" rel="tag"># Math</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/26/manacher/" rel="next" title="manacher算法">
+                <i class="fa fa-chevron-left"></i> manacher算法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/20/Docker常见命令与操作/" rel="prev" title="Docker常见命令与操作">
+                Docker常见命令与操作 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Housirvip</p>
+              <p class="site-description motion-element" itemprop="description">housirvip的个人博客</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#上下标"><span class="nav-number">1.</span> <span class="nav-text">上下标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分数"><span class="nav-number">2.</span> <span class="nav-text">分数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#累加"><span class="nav-number">3.</span> <span class="nav-text">累加</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#累乘"><span class="nav-number">4.</span> <span class="nav-text">累乘</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开方"><span class="nav-number">5.</span> <span class="nav-text">开方</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#积分"><span class="nav-number">6.</span> <span class="nav-text">积分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正无穷、负无穷"><span class="nav-number">7.</span> <span class="nav-text">正无穷、负无穷</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#极限"><span class="nav-number">8.</span> <span class="nav-text">极限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关系运算符"><span class="nav-number">9.</span> <span class="nav-text">关系运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二元运算符"><span class="nav-number">10.</span> <span class="nav-text">二元运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#否定关系运算符"><span class="nav-number">11.</span> <span class="nav-text">否定关系运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对数运算符"><span class="nav-number">12.</span> <span class="nav-text">对数运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三角运算符"><span class="nav-number">13.</span> <span class="nav-text">三角运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#箭头"><span class="nav-number">14.</span> <span class="nav-text">箭头</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Housirvip</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("lvTHcs8BIVaMq7QS5615Uicg-gzGzoHsz", "yoz9WzeAOxkV3XVO8FGEKWqb");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
